@@ -35,13 +35,17 @@ $api = new LiveSurfApi('ВАШ_API_КЛЮЧ');
 try {
     // 1️⃣ Информация о пользователе
     $user = $api->getUser();
-    echo "Баланс: {$user['credits']} / Режим: {$user['workmode']}\n\n";
+    echo "Баланс: {$user['credits']} / Режим: {$user['workmode']}
+
+";
 
     // 2️⃣ Получаем список категорий
     $categories = $api->getCategories();
-    echo "Доступные категории:\n";
+    echo "Доступные категории:
+";
     foreach ($categories as $cat) {
-        echo "- {$cat['id']}: {$cat['name']}\n";
+        echo "- {$cat['id']}: {$cat['name']}
+";
     }
 
     // 3️⃣ Создаём новую группу
@@ -62,33 +66,86 @@ try {
         ]
     ]);
 
-    echo "\nСоздана группа ID: {$newGroup['id']}\n";
+    echo "
+Создана группа ID: {$newGroup['id']}
+";
 
     // 4️⃣ Получаем список всех групп
     $groups = $api->getGroups();
-    echo "Всего групп: " . count($groups) . "\n";
+    echo "Всего групп: " . count($groups) . "
+";
 
     // 5️⃣ Клонируем группу
     $clone = $api->cloneGroup($newGroup['id'], 'Копия тестовой группы');
-    echo "Создан клон группы ID: {$clone['id']}\n";
+    echo "Создан клон группы ID: {$clone['id']}
+";
 
     // 6️⃣ Добавляем кредиты в группу
     $api->addGroupCredits($newGroup['id'], 100);
-    echo "Кредиты успешно зачислены.\n";
+    echo "Кредиты успешно зачислены.
+";
 
     // 7️⃣ Получаем статистику
     $stats = $api->getStats(['group_id' => $newGroup['id'], 'date' => date('Y-m-d')]);
-    echo "\nСтатистика за сегодня:\n";
+    echo "
+Статистика за сегодня:
+";
     print_r($stats);
 
     // 8️⃣ Удаляем группу
     $api->deleteGroup($newGroup['id']);
-    echo "Группа успешно удалена.\n";
+    echo "Группа успешно удалена.
+";
 
 } catch (Exception $e) {
     echo "⚠️ Ошибка: " . $e->getMessage();
 }
 ```
+
+## Доступные методы API
+
+### Пользователь
+| Метод | Описание |
+|-------|----------|
+| `getUser()` | Получение информации о пользователе |
+| `setAutoMode()` | Включение автоматического режима (АРК) |
+| `setManualMode()` | Включение ручного режима работы |
+
+### Категории, страны, языки, источники
+| Метод | Описание |
+|-------|----------|
+| `getCategories()` | Список возможных категорий |
+| `getCountries()` | Список возможных стран |
+| `getLanguages()` | Список доступных языков |
+| `getSourcesAd()` | Список рекламных площадок |
+| `getSourcesMessengers()` | Список мессенджеров |
+| `getSourcesSearch()` | Список поисковых систем |
+| `getSourcesSocial()` | Список социальных сетей |
+
+### Группы
+| Метод | Описание |
+|-------|----------|
+| `getGroups()` | Информация о всех добавленных группах |
+| `getGroup(int $groupId)` | Информация о конкретной группе |
+| `updateGroup(int $groupId, array $data)` | Изменение настроек группы |
+| `deleteGroup(int $groupId)` | Удаление группы |
+| `createGroup(array $data)` | Создание новой группы |
+| `cloneGroup(int $groupId, string $name)` | Клонирование группы |
+| `addGroupCredits(int $groupId, int $credits)` | Зачисление кредитов группы |
+
+### Страницы
+| Метод | Описание |
+|-------|----------|
+| `getPage(int $pageId)` | Информация о конкретной странице |
+| `updatePage(int $pageId, array $data)` | Изменение настроек страницы |
+| `deletePage(int $pageId)` | Удаление страницы |
+| `createPage(array $data)` | Создание новой страницы |
+| `clonePage(int $pageId)` | Клонирование страницы |
+| `movePageUp(int $pageId)` | Перемещение страницы вверх |
+| `movePageDown(int $pageId)` | Перемещение страницы вниз |
+| `startPage(int $pageId)` | Запуск страницы в работу |
+| `stopPage(int $pageId)` | Остановка работы страницы |
+| `getStats(array $params)` | Статистика показа страницы |
 
 ## Лицензия
 
