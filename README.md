@@ -35,17 +35,14 @@ $api = new LiveSurfApi('ВАШ_API_КЛЮЧ');
 try {
     // 1️⃣ Информация о пользователе
     $user = $api->getUser();
-    echo "Баланс: {$user['credits']} / Режим: {$user['workmode']}
-
-";
+    echo "Баланс: {$user['credits']} / Режим: {$user['workmode']}";
 
     // 2️⃣ Получаем список категорий
     $categories = $api->getCategories();
-    echo "Доступные категории:
-";
+    echo "Доступные категории:";
+
     foreach ($categories as $cat) {
-        echo "- {$cat['id']}: {$cat['name']}
-";
+        echo "- {$cat['id']}: {$cat['name']}";
     }
 
     // 3️⃣ Создаём новую группу
@@ -66,36 +63,28 @@ try {
         ]
     ]);
 
-    echo "
-Создана группа ID: {$newGroup['id']}
-";
+    echo "Создана группа ID: {$newGroup['id']}";
 
     // 4️⃣ Получаем список всех групп
     $groups = $api->getGroups();
-    echo "Всего групп: " . count($groups) . "
-";
+    echo "Всего групп: " . count($groups) . "";
 
     // 5️⃣ Клонируем группу
     $clone = $api->cloneGroup($newGroup['id'], 'Копия тестовой группы');
-    echo "Создан клон группы ID: {$clone['id']}
-";
+    echo "Создан клон группы ID: {$clone['id']}";
 
     // 6️⃣ Добавляем кредиты в группу
     $api->addGroupCredits($newGroup['id'], 100);
-    echo "Кредиты успешно зачислены.
-";
+    echo "Кредиты успешно зачислены.";
 
     // 7️⃣ Получаем статистику
     $stats = $api->getStats(['group_id' => $newGroup['id'], 'date' => date('Y-m-d')]);
-    echo "
-Статистика за сегодня:
-";
+    echo "Статистика за сегодня:";
     print_r($stats);
 
     // 8️⃣ Удаляем группу
     $api->deleteGroup($newGroup['id']);
-    echo "Группа успешно удалена.
-";
+    echo "Группа успешно удалена.";
 
 } catch (Exception $e) {
     echo "⚠️ Ошибка: " . $e->getMessage();
