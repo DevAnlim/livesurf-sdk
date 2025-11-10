@@ -1,8 +1,8 @@
 # livesurf-sdk
 
-PHP SDK для LiveSurf API (https://api.livesurf.ru/).
-Документация API (https://livesurf.ru/api_documentation.html)
-Получить API-ключ (https://livesurf.ru/api)
+- PHP SDK для LiveSurf API (https://api.livesurf.ru/).
+- Документация API (https://livesurf.ru/api_documentation.html)
+- Получить API-ключ (https://livesurf.ru/api)
 
 ## Возможности
 - PSR-4 класс `Decpro\LiveSurfSdk\LiveSurfApi`
