@@ -8,7 +8,7 @@ use Exception;
 /**
  * LiveSurf API PHP SDK
  * =====================
- * Русская версия клиента для работы с API https://api.livesurf.ru/
+ * Клиент для работы с API https://api.livesurf.ru/
  *
  * Возможности:
  *  - Авторизация по API ключу (заголовок Authorization)
