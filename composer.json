@@ -1,0 +1,19 @@
+{
+    "name": "decpro/livesurf-sdk",
+    "description": "PHP SDK для API LiveSurf — автоматизация управления кампаниями, страницами и статистикой.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "decpro"
+        }
+    ],
+    "require": {
+        "php": ">=8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Decpro\\\\LiveSurfSdk\\\\": "src/"
+        }
+    }
+}
